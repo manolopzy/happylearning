@@ -3,7 +3,7 @@
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Layout from "./components/template/Layout";
 import HomePage from './components/home/HomePage';
-import ArithmeticGame from './components/games/ArithmeticGame';
+import ArithmeticGame from './components/games/arithmetic/ArithmeticGame';
 
 const NotFound = () => <h1>Page Not Found</h1>;
 export default function App() {

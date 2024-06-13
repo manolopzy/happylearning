@@ -2,7 +2,7 @@
 
 function ArithmeticGame() {
     return (
-        <div className="App">
+        <div className="arithmeticGame">
             <div className="row">
                 <div className="col-md-12">
                     <h1 className="text-center">Welcome to Social Arithmetic</h1>
