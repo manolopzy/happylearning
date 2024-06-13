@@ -1,0 +1,7 @@
+
+
+
+npx create-react-app happylearningui --template typescript
+
+npm i react-router-dom
+npm install --save @types/react-router-dom
