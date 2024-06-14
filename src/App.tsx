@@ -1,9 +1,13 @@
 
-
+import { createContext, useContext } from 'react';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Layout from "./components/template/Layout";
 import HomePage from './components/home/HomePage';
 import ArithmeticGame from './components/games/arithmetic/ArithmeticGame';
+//https://blog.logrocket.com/how-to-use-react-context-typescript/
+
+const globalStateContext = createContext({user: {name: 34}});
+
 
 const NotFound = () => <h1>Page Not Found</h1>;
 export default function App() {

@@ -6,6 +6,11 @@
 
 import { Link } from "react-router-dom";
 export default function NavBar() {
+
+    function handleAuthorization(): import("react").MouseEventHandler<HTMLAnchorElement> | undefined {
+        throw new Error("Function not implemented.");
+    }
+
     return (
         <>
             <header>
@@ -34,7 +39,7 @@ export default function NavBar() {
                     </li>
                     <li id="li_games">
                         {/* <a href="">Contactos</a> */}
-                        <Link to="/games">Games</Link>
+                        <Link to="/games" onClick={handleAuthorization()}>Games</Link>
                     </li>
                 </ul>
             </nav>
