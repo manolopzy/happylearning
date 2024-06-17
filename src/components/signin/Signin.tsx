@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { SERVER_URL } from "../../Constants";
-import { UserProfile } from "../Types";
+import { UserProfile } from "../contexts/UserContext";
+
 //const LoginPage: React.FC function component
 
 interface User {

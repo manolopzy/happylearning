@@ -4,11 +4,17 @@
 //     Format Selection (Ctrl+K Ctrl+F) - 
 //     Format the selected text.-->
 
+import { MouseEventHandler, useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserProfileContext } from "../contexts/UserContext";
 export default function NavBar() {
 
-    function handleAuthorization(): import("react").MouseEventHandler<HTMLAnchorElement> | undefined {
-        throw new Error("Function not implemented.");
+    const user = useContext(UserProfileContext);
+
+    function handleAuthorization() {
+        if (!user)
+            console.log("You have to login first");
+
     }
 
     return (
@@ -32,14 +38,14 @@ export default function NavBar() {
                     <li id="li_programming_languages">
                         <Link to="/programminglangueges">Programming</Link>
                         <ul>
-                        <Link to="/ml">Machine Learning</Link>
-                        <Link to="/scratch">Scratch</Link>
-                        <Link to="/unity">Unity</Link>
+                            <Link to="/ml">Machine Learning</Link>
+                            <Link to="/scratch">Scratch</Link>
+                            <Link to="/unity">Unity</Link>
                         </ul>
                     </li>
                     <li id="li_games">
                         {/* <a href="">Contactos</a> */}
-                        <Link to="/games" onClick={handleAuthorization()}>Games</Link>
+                        <Link to="/games" onClick={handleAuthorization}>Games</Link>
                     </li>
                 </ul>
             </nav>
