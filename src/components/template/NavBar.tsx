@@ -4,26 +4,14 @@
 //     Format Selection (Ctrl+K Ctrl+F) - 
 //     Format the selected text.-->
 
-import { MouseEventHandler, useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserProfileContext } from "../contexts/UserContext";
 export default function NavBar() {
-
-    const user = useContext(UserProfileContext);
-
-    function handleAuthorization() {
-        if (!user)
-            console.log("You have to login first");
-
-    }
-
     return (
         <>
             <header>
-
                 <h1>
-                    <img src="" alt="logo"></img>
-                    <Link to="/">HAPPY LEARNING</Link>
+                    <div><Link to="/signin">Sign in</Link></div>
+                    <div><Link to="/">HAPPY LEARNING</Link></div>
                 </h1>
             </header>
             <nav>
@@ -45,7 +33,7 @@ export default function NavBar() {
                     </li>
                     <li id="li_games">
                         {/* <a href="">Contactos</a> */}
-                        <Link to="/games" onClick={handleAuthorization}>Games</Link>
+                        <Link to="/games">Games</Link>
                     </li>
                 </ul>
             </nav>
