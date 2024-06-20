@@ -16,19 +16,41 @@ const Signin = () => {
 
   const handleSignin = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post(SERVER_URL + '/auth/signin', {
-      ...user
-    }).then((response: AxiosResponse) => {
-      console.log(response.data)
-      const userProfile: UserProfile = {
-        name: response.data.name,
-        email: response.data.email
-      }
-      console.log(userProfile);
-    }).catch((error) => {
-      console.log(error);
-    }
-    );
+    console.log({...user});
+    
+    // axios.post(SERVER_URL + '/auth/signin', {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   data:{
+    //     ...user
+    //   }
+    // }).then((response: AxiosResponse) => {
+    //   console.log(response.data)
+    //   const userProfile: UserProfile = {
+    //     name: response.data.name,
+    //     email: response.data.email
+    //   }
+    //   console.log(userProfile);
+    // }).catch((error) => {
+    //   console.log(error);
+    // }
+    // );
+
+
+    fetch(SERVER_URL + '/auth/signin', 
+      {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...user
+      })
+    })
+      .then(response => response.json())
+      .then(data => console.log(data)
+      );
   }
   return (
     <div>
