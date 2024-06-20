@@ -26,7 +26,7 @@ const Signin = () => {
       }
       console.log(userProfile);
     }).catch((error) => {
-      console.log(error.message);
+      console.log(error);
     }
     );
   }
