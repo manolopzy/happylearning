@@ -1,6 +1,10 @@
+import { useState } from "react";
 
 
 function PlayBoard() {
+    const [operator, setOperator] = useState<string>("");
+    const [operation, setOperation] = useState<string>("");
+    
     return (
         <>
         <div className="row">
@@ -12,7 +16,6 @@ function PlayBoard() {
                 <div className="col-md-6">
                     <h3 className="text-center">This is your challenge for today:</h3>
                     <h1 className="text-center">
-
                         <span className="arithmetic-a"></span>
                         <select id="arithmetic">
                             <option value="addition">+</option>
@@ -23,7 +26,6 @@ function PlayBoard() {
                         <span className="arithmetic-b"></span>
                     </h1>
                     <p>
-
                         <form id="attempt-form">
                             <div className="form-group">
                                 <label htmlFor="result-attempt">Result?</label>

@@ -28,12 +28,12 @@ export interface UserProfile {
  */
 export const UserProfileContext = createContext<UserProfile | null>(null);
 
-export const UserProfileSetContext = createContext<React.Dispatch<React.SetStateAction<UserProfile | null>> | null>(null);
+export const UserProfileSetContext = createContext<React.Dispatch<React.SetStateAction<UserProfile>> | null>(null);
 
 export function UserProvider({ children }: any) {
     //The type of the "user" object: UserProfile | null
     //The type of the "setUser" function: React.Dispatch<React.SetStateAction<UserProfile | null>>
-    const [user, setUser] = useState<UserProfile | null>(null);
+    const [user, setUser] = useState<UserProfile>({name:'', email:''});
 
     return (
         <UserProfileContext.Provider value={user}>
