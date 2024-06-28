@@ -26,6 +26,8 @@ export interface UserProfile {
  * We'd like to separate the "user" and "setUser" into two 
  * context so that ...
  */
+
+
 export const UserProfileContext = createContext<UserProfile | null>(null);
 
 export const UserProfileSetContext = createContext<React.Dispatch<React.SetStateAction<UserProfile>> | null>(null);

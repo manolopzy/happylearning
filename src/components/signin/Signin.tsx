@@ -1,14 +1,51 @@
-import React, { useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { SERVER_URL } from "../../Constants";
 import { UserProfile, UserProfileSetContext } from "../contexts/UserContext";
-
-//const LoginPage: React.FC function component
 
 interface User {
   username: string;
   password: string;
 }
+
+export const AuthContext = createContext<{
+  isAuthenticated: boolean;
+  user: User | null;
+  login: (username: string, password: string) => Promise<void>;
+  logout: () => void;
+}>({
+  isAuthenticated: false,
+  user: null,
+  login: () => Promise.resolve(),
+  logout: () => {},
+});
+
+//const LoginPage: React.FC function component
+// type User = {
+//   id: string;
+//   username: string;
+//   email: string;
+// };
+
+// type AuthAction =
+//   | { type: 'LOGIN'; user: User }
+//   | { type: 'LOGOUT' };
+//   const authReducer: Reducer<{ isAuthenticated: boolean; user: User | null }, AuthAction> = (
+//     state: any,
+//     action: AuthAction
+//   ) => {
+//     switch (action.type) {
+//       case 'LOGIN':
+//         return { isAuthenticated: true, user: action.user };
+//       case 'LOGOUT':
+//         return { isAuthenticated: false, user: null };
+//       default:
+//         return state;
+//     }
+//   };
+
+
+
 const Signin = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -53,7 +90,7 @@ const Signin = () => {
       .then(data => {
         console.log(data);
         const userData: UserProfile = data;
-        //setUser(userData);
+        
         
       }
       );
