@@ -1,10 +1,21 @@
-import { useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
+import { SERVER_URL, RANDOM_ARITHEMETIC_OPERATION } from "../../../Constants";
 
 
 function PlayBoard() {
     const [operator, setOperator] = useState<string>("");
     const [operation, setOperation] = useState<string>("");
-    
+    useEffect(() => {
+        //'https://domain.com/path/?param1=value1&param2=value2'
+        
+        axios.get(SERVER_URL + RANDOM_ARITHEMETIC_OPERATION).then((response: AxiosResponse) => {
+            console.log(response.data);
+        }).catch((error) => {
+            console.log(error);
+        }
+        );
+    })
     return (
         <>
         <div className="row">

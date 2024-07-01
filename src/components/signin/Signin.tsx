@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
-import axios, { AxiosResponse } from "axios";
+// import axios, { AxiosResponse } from "axios";
 import { SERVER_URL } from "../../Constants";
-import { UserProfile, UserProfileSetContext } from "../contexts/UserContext";
+import {UserProfileContext, UserProfileSetContext } from "../contexts/UserContext";
+import HomePage from "../home/HomePage";
 
 interface User {
   username: string;
@@ -51,7 +52,8 @@ const Signin = () => {
   const [password, setPassword] = useState<string>("");
   const [loginData, setLoginData] = useState<User>({ username: '', password: '' });
   const setUser = useContext(UserProfileSetContext);
-  
+  const user = useContext(UserProfileContext);
+
   const handleSignin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({...loginData});
@@ -88,25 +90,37 @@ const Signin = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log("before updating user data");
+        console.log(user);
+
         console.log(data);
-        const userData: UserProfile = data;
         
-        
+        setUser?.({...data});
+        console.log("after updating user data");
+        console.log(user);
       }
       );
   }
   return (
+    
     <div>
-      <input type="text" value={username} placeholder="Username" onChange={(e) => {
-        setUsername(e.target.value);
-        setLoginData({ ...loginData, username: e.target.value });
-      }} />
-      <input type="password" value={password} placeholder="Password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-          setLoginData({ ...loginData, password: e.target.value });
+      {(user && user?.jwt !== '') ? (
+        <HomePage/>
+      ) : (
+        <>
+        <input type="text" value={username} placeholder="Username" onChange={(e) => {
+          setUsername(e.target.value);
+          setLoginData({ ...loginData, username: e.target.value });
         }} />
-      <button type="submit" onClick={handleSignin}> Submit</button>
+        <input type="password" value={password} placeholder="Password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setLoginData({ ...loginData, password: e.target.value });
+          }} />
+        <button type="submit" onClick={handleSignin}> Submit</button>
+        </>
+      )}
+      
     </div>
   )
 };
