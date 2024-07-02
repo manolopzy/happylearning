@@ -9,10 +9,11 @@ function PlayBoard() {
     useEffect(() => {
         //'https://domain.com/path/?param1=value1&param2=value2'
         
-        axios.get(SERVER_URL + RANDOM_ARITHEMETIC_OPERATION).then((response: AxiosResponse) => {
+        axios.get(SERVER_URL + RANDOM_ARITHEMETIC_OPERATION + operator).then((response: AxiosResponse) => {
             console.log(response.data);
         }).catch((error) => {
             console.log(error);
+
         }
         );
     })
