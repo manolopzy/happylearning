@@ -6,6 +6,7 @@ import HomePage from './components/home/HomePage';
 import ArithmeticGame from './components/games/arithmetic/ArithmeticGame';
 import Signin from './components/signin/Signin';
 //https://blog.logrocket.com/how-to-use-react-context-typescript/
+//https://www.bezkoder.com/react-typescript-authentication-example/
 
 
 

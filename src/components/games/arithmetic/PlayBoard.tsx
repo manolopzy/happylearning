@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import { SERVER_URL, RANDOM_ARITHEMETIC_OPERATION } from "../../../Constants";
+import { SERVER_URL, RANDOM_ARITHEMETIC_OPERATION, BASIC_AUTH } from "../../../Constants";
 
 function PlayBoard() {
   const [operator, setOperator] = useState<string>("+");
@@ -10,9 +10,11 @@ function PlayBoard() {
   };
   useEffect(() => {
     //'https://domain.com/path/?param1=value1&param2=value2'
-
+    
     axios
-      .get(SERVER_URL + RANDOM_ARITHEMETIC_OPERATION + operator)
+      .get(SERVER_URL + RANDOM_ARITHEMETIC_OPERATION + operator, {
+        headers: { 'Authorization': + BASIC_AUTH }
+    })
       .then((response: AxiosResponse) => {
         console.log(response.data);
       })
