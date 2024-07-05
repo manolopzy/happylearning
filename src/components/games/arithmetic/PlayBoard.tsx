@@ -1,6 +1,32 @@
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { SERVER_URL, RANDOM_ARITHEMETIC_OPERATION, BASIC_AUTH } from "../../../Constants";
+import React from "react";
+
+const OPERATORS = ["+", "-", "*", "/"];
+
+type Operador = typeof OPERATORS[number];
+const SelectOperator = () => {
+  const [selected, setSelected] = React.useState<string>(OPERATORS[0]);
+  const handleOperatorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    // onChange(options[e.target.selectedIndex]);
+  };
+  
+  return (
+    <div>
+      <div>Value: {selected}</div>
+
+      <select value={selected} onChange={handleOperatorChange}>
+      {OPERATORS.map((option) => (
+        <option value={option} key={valoptionue}>
+          {option}
+        </option>
+      ))}
+    </select>
+    </div>
+  );
+};
+
 
 function PlayBoard() {
   const [operator, setOperator] = useState<string>("+");
@@ -8,6 +34,7 @@ function PlayBoard() {
   const onOperatorChange = () => {
 
   };
+  
   useEffect(() => {
     //'https://domain.com/path/?param1=value1&param2=value2'
     
@@ -24,6 +51,14 @@ function PlayBoard() {
   });
   return (
     <div className="playboard">
+    <select value={toValue(value)} onChange={handleChange}>
+      {options.map((value) => (
+        <option value={toValue(value)} key={toValue(value)}>
+          {toLabel(value)}
+        </option>
+      ))}
+    </select>
+
         <div className="row">
         <div className="col-md-12">
           <h1 className="text-center">Welcome to Social Arithmetic</h1>
