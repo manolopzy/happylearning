@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 // import axios, { AxiosResponse } from "axios";
 import { SERVER_URL } from "../../Constants";
-import {UserProfileContext, UserProfileSetContext } from "../contexts/UserContext";
+import {UserProfile, UserProfileContext, UserProfileSetContext } from "../contexts/UserContext";
 import HomePage from "../home/HomePage";
 
 interface User {
@@ -94,8 +94,9 @@ const Signin = () => {
         console.log(user);
 
         console.log(data);
-        
-        setUser?.({...data});
+        const userInfo: UserProfile = {jwt: data.jwt, name: data.registrationUser.username, email: data.registrationUser.password};
+
+        setUser?.({...userInfo});
         console.log("after updating user data");
         console.log(user);
       }
