@@ -2,5 +2,9 @@ curl -u manolo:1234 http://localhost:8084/arithmetic/random?operator=+
 
 2024 6 14 in the class
 CTRL + SHIFT + P
+
 npm install axios
 
+
+npm install react-bootstrap
+npm install --save @types/react-bootstrap
