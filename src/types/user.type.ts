@@ -25,3 +25,9 @@ export type UserAttempt = {
   result: number,
   correct: boolean
 }
+
+export type UserArithmeticStatistics = {
+  userId: string,
+  score: number,
+  badges: string[]
+}
