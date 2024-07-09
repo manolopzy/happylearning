@@ -1,3 +1,18 @@
+curl -XPOST -H "content-type: application/json" -d "{\"username\":\"manolo\",\"password\":\"1234\"}" http://localhost:8023/user/add
+
+curl -v -XPOST -H "content-type: application/json" -d
+"{\"username\":\"danielle\",\"code\":\"8173\"}"
+http:/./localhost:8023/otp/check
+
+curl -XPOST
+-H "content-type: application/json"
+-d "{"username":"danielle","password":"12345"}"
+http://localhost:8023/user/add
+
+
+
+
+
 curl -u manolo:1234 http://localhost:8084/arithmetic/random?operator=+
 
 2024 6 14 in the class
