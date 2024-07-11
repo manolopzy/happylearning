@@ -1,4 +1,15 @@
 
+curl http://localhost:9092/hi
+curl -H "username:manolo" -H "password:1234" http://localhost:9092/login
+
+curl -v -H "username:manolo" -H "code:1943" http://localhost:9092/login
+
+curl -H "Authorization:eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Im1hbm9sbyJ9.Y09rveq3oCxQYM2TCO3JEW8RXkw7vMF9LCtmXrX1wsMVTbXD76ppqrd9Y43cYfOQTWikD2IWtrKVLPJEXKTKeA"
+http://localhost:9092/hi
+
+curl -XPOST -H "content-type: application/json" -d '{\"username\":\"manolo\",\"password\":\"1234\"}' 
+http://localhost:8023/user/add
+
 curl -u manolo:1234 http://localhost:8084/arithmetic/random?operator=+
 
 curl -XPOST -H "content-type: application/json" -d "{\"username\":\"manolo\",\"password\":\"1234\"}" http://localhost:8023/user/add
