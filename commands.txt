@@ -1,11 +1,1 @@
-
-curl -H "Authorization:eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6Im1hbm9sbyJ9.Y09rveq3oCxQYM2TCO3JEW8RXkw7vMF9LCtmXrX1wsMVTbXD76ppqrd9Y43cYfOQTWikD2IWtrKVLPJEXKTKeA"
-http://localhost:9092/hi
-
-
-
-
-
-
-
-
+curl -v -H "username:manolo" -H "code:5678" http://localhost:8084/login

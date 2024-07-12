@@ -3,15 +3,15 @@ import React, { createContext, useContext, useState } from "react";
 import { LOGIN, SERVER_URL } from "../../Constants";
 import {UserProfile, UserProfileContext, UserProfileSetContext } from "../contexts/UserContext";
 import HomePage from "../home/HomePage";
-
-interface Auth {
+import { useNavigate } from "react-router-dom";
+interface User {
   username: string;
-  code: string;
+  password: string;
 }
 
 export const AuthContext = createContext<{
   isAuthenticated: boolean;
-  user: Auth | null;
+  user: User | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
 }>({
@@ -47,86 +47,51 @@ export const AuthContext = createContext<{
 
 
 
-const Signin = () => {
-  const [username, setUsername] = useState<string>("");
-  const [code, setCode] = useState<string>("");
-  const [loginData, setLoginData] = useState<Auth>({ username: '', code: '' });
-  const setUser = useContext(UserProfileSetContext);
-  const user = useContext(UserProfileContext);
+const UsernamePasswordSignin = () => {
+  
+  const [loginData, setLoginData] = useState<User>({ username: '', password: '' });
+
+  const navigation = useNavigate();
 
   const handleSignin = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({...loginData});
-    
-    // axios.post(SERVER_URL + '/auth/signin', {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   data:{
-    //     ...user
-    //   }
-    // }).then((response: AxiosResponse) => {
-    //   console.log(response.data)
-    //   const userProfile: UserProfile = {
-    //     name: response.data.name,
-    //     email: response.data.email
-    //   }
-    //   console.log(userProfile);
-    // }).catch((error) => {
-    //   console.log(error);
-    // }
-    // );
-
-
-    fetch(SERVER_URL + LOGIN, 
+    const url  = SERVER_URL + LOGIN;
+    fetch(url, 
       {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'username': loginData.username,
-        'code': loginData.code
+        'password': loginData.password
       },
       body: JSON.stringify({
         ...loginData
       })
     })
-      // .then(response => response.json())
-      .then(response => {
-        console.log("before updating user data");
-        console.log(user);
-
+      .then((response) => {
+        console.log("login step 1");
         console.log(response);
-        //const userInfo: UserProfile = {jwt: data.jwt, name: data.registrationUser.username, email: data.registrationUser.password};
-        console.log(response.headers.get("Authorization"));
-        //setUser?.({...userInfo});
-        console.log("after updating user data");
-        console.log(user);
+        
+        navigation("/confirmation");
       }
       );
   }
   return (
     
     <div>
-      {(user && user?.jwt !== '') ? (
-        <HomePage/>
-      ) : (
-        <>
-        <input type="text" value={username} placeholder="Username" onChange={(e) => {
-          setUsername(e.target.value);
+      <input type="text" value={loginData.username} placeholder="Username" onChange={(e) => {
           setLoginData({ ...loginData, username: e.target.value });
         }} />
-        <input type="password" value={code} placeholder="code"
+        <input type="password" value={loginData.password} placeholder="Password"
           onChange={(e) => {
-            setCode(e.target.value);
-            setLoginData({ ...loginData, code: e.target.value });
+            setLoginData({ ...loginData, password: e.target.value });
           }} />
         <button type="submit" onClick={handleSignin}> Submit</button>
-        </>
-      )}
       
     </div>
   )
 };
 
 
-export default Signin;
+export default UsernamePasswordSignin;

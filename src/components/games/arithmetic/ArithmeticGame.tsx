@@ -8,6 +8,7 @@ import Signin from "../../signin/Signin";
 import axios, { AxiosResponse } from "axios";
 import { ARITHEMETIC_ATTEMPT, ARITHEMETIC_ATTEMPTS, ARITHEMETIC_RANDOM_OPERATION, BASIC_AUTH, SERVER_URL, STATISTICS } from "../../../Constants";
 import { UserArithmeticStatistics, UserAttempt } from "../../../types/user.type";
+import UsernamePasswordSignin from "../../signin/UsernamePasswordSignin";
 
 
 
@@ -15,7 +16,7 @@ function ArithmeticGame() {
   const user = useContext(UserProfileContext);
   console.log("arithmetic game", user);
   if (!user || !user.jwt) {
-    return <Signin />
+    return <UsernamePasswordSignin />
   }
   else {
     return <MainBoard {...user} />

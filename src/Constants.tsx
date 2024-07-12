@@ -5,6 +5,7 @@ export const ARITHEMETIC_ATTEMPT = '/arithmetic/attempt';
 export const ARITHEMETIC_ATTEMPTS = '/arithmetic/attempts?alias=';
 export const GAMIFICATION_RANKING = "/gamification/leaders";
 export const STATISTICS = "/gamification/stats?userId=";
+export const LOGIN = "/login";
 
 const username = 'manolo';
 const password = '1234';
