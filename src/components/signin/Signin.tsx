@@ -85,44 +85,47 @@ const Signin = () => {
     // );
 
 
-    fetch(SERVER_URL + LOGIN, 
-      {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'username': loginData.username,
-        'code': loginData.code
-      },
-      mode: 'cors',
-      body: JSON.stringify({
-        ...loginData
-      })
-    })
-      // .then(response => response.json())
-      .then(response => {
-        console.log("before updating user data");
-        console.log(user);
+    // fetch(SERVER_URL + LOGIN, 
+    //   {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'username': loginData.username,
+    //     'code': loginData.code
+    //   },
+    //   mode: 'cors',
+    //   body: JSON.stringify({
+    //     ...loginData
+    //   })
+    // })
+    //   // .then(response => response.json())
+    //   .then(response => {
+    //     console.log("before updating user data");
+    //     console.log(user);
 
-        console.log(response);
-        console.log(response.headers);
-        //const userInfo: UserProfile = {jwt: data.jwt, name: data.registrationUser.username, email: data.registrationUser.password};
-        console.log(response.headers.get("Authorization"));
-        response.headers.forEach(console.log);
-        for(let entry in response.headers.entries()) {
-          console.log(entry);
-        }
-        response.headers.forEach(function(value, key){
-          console.log('[' + key + '] = '+value);
-      });
+    //     console.log(response);
+    //     console.log(response.headers);
+    //     //const userInfo: UserProfile = {jwt: data.jwt, name: data.registrationUser.username, email: data.registrationUser.password};
+    //     console.log(response.headers.get("Authorization"));
+    //     response.headers.forEach(console.log);
+    //     for(let entry in response.headers.entries()) {
+    //       console.log(entry);
+    //     }
+    //     response.headers.forEach(function(value, key){
+    //       console.log('[' + key + '] = '+value);
+    //   });
         
-        console.log("after updating user data");
-        console.log(user);
+    //     console.log("after updating user data");
+    //     console.log(user);
 
-        const profile : UserProfile = {name: username, email: username, jwt: response.headers.get("Authorization") ?? ''};
-        localStorage.setItem("Authorization", response.headers.get("Authorization") ?? '');
+    //     const profile : UserProfile = {name: username, email: username, jwt: response.headers.get("Authorization") ?? ''};
+    //     localStorage.setItem("Authorization", response.headers.get("Authorization") ?? '');
+    //     setUser?.({...profile});
+    //   }
+    //   );
+            const profile : UserProfile = {name: username, email: username, jwt:"sdfljs4545dlf"};
+        
         setUser?.({...profile});
-      }
-      );
   }
   return (
     

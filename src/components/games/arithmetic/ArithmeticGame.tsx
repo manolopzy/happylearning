@@ -13,6 +13,17 @@ import { jwtHeader } from "../../../helpers/auth-header";
 
 
 
+// function ArithmeticGame() {
+//   const user = useContext(UserProfileContext);
+//   console.log("arithmetic game", user);
+//   if (!user || !user.jwt) {
+//     return <UsernamePasswordSignin />
+//   }
+//   else {
+//     return <MainBoard {...user} />
+//   }
+
+// }
 function ArithmeticGame() {
   const user = useContext(UserProfileContext);
   console.log("arithmetic game", user);
@@ -24,7 +35,6 @@ function ArithmeticGame() {
   }
 
 }
-
 function MainBoard(user: UserProfile) {
   const [attemps, setAttemps] = useState<UserAttempt[]>([]);
   const [statistics, setStatistics] = useState<UserArithmeticStatistics>();
@@ -77,9 +87,6 @@ function MainBoard(user: UserProfile) {
         console.log(error);
       });
   }
-
-  console.log("user obj", user);
-
   return (
     <div className="arithmeticGame">
       <PlayBoard {...user} />

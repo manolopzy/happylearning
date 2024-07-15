@@ -1,5 +1,5 @@
 
-
+import './App.css';
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Layout from "./components/template/Layout";
 import HomePage from './components/home/HomePage';
