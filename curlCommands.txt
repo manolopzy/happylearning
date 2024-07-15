@@ -32,8 +32,27 @@ http://localhost:8023/user/add
 2024 6 14 in the class
 CTRL + SHIFT + P
 
-npm install axios
+
+some common options used with the curl command:
+
+-o or -O: Specify the output file name or path.
+-b or -B: Specify the cookie file or path.
+-c or -C: Continue an interrupted transfer.
+-d or -D: Specify the data to be sent in the request body.
+-e or -E: Specify the email address.
+-H or -h: Specify the header.
+-i or -I: Show the response headers.
+-k or -K: Ignore SSL verification.
+-L or -l: Follow redirects.
+-m or -M: Specify the maximum time to wait for a response.
+-o or -O: Specify the output file name or path.
+-p or -P: Specify the proxy server.
+-q or -Q: Quiet mode.
+-s or -S: Silent mode.
+-t or -T: Specify the timeout.
+-u or -U: Specify the username and password.
+-v or -V: Show verbose output.
+-x or -X: Specify the request method (e.g., GET, POST, PUT, DELETE).
 
 
-npm install react-bootstrap
-npm install --save @types/react-bootstrap
+

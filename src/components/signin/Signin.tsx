@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 import { LOGIN, SERVER_URL } from "../../Constants";
 import {UserProfile, UserProfileContext, UserProfileSetContext } from "../contexts/UserContext";
 import HomePage from "../home/HomePage";
+import axios, { AxiosResponse } from "axios";
 
 interface Auth {
   username: string;
@@ -58,20 +59,26 @@ const Signin = () => {
     e.preventDefault();
     console.log({...loginData});
     
-    // axios.post(SERVER_URL + '/auth/signin', {
+    // axios.post(SERVER_URL + LOGIN, {
+    //   ...loginData
+    // }, {
     //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   data:{
-    //     ...user
+    //     'Content-Type': 'application/json',
+    //     'username': loginData.username,
+    //     'code': loginData.code
     //   }
-    // }).then((response: AxiosResponse) => {
-    //   console.log(response.data)
-    //   const userProfile: UserProfile = {
-    //     name: response.data.name,
-    //     email: response.data.email
-    //   }
-    //   console.log(userProfile);
+    // }).then(response => {
+    //   console.log("before updating user data");
+    //   console.log(user);
+
+    //   console.log(response);
+    //   console.log(response.headers);
+    //   //const userInfo: UserProfile = {jwt: data.jwt, name: data.registrationUser.username, email: data.registrationUser.password};
+    //   console.log(response.headers.hasAuthorization);
+      
+    //   //setUser?.({...userInfo});
+    //   console.log("after updating user data");
+    //   console.log(user);
     // }).catch((error) => {
     //   console.log(error);
     // }
@@ -86,6 +93,7 @@ const Signin = () => {
         'username': loginData.username,
         'code': loginData.code
       },
+      mode: 'cors',
       body: JSON.stringify({
         ...loginData
       })
@@ -96,11 +104,23 @@ const Signin = () => {
         console.log(user);
 
         console.log(response);
+        console.log(response.headers);
         //const userInfo: UserProfile = {jwt: data.jwt, name: data.registrationUser.username, email: data.registrationUser.password};
         console.log(response.headers.get("Authorization"));
-        //setUser?.({...userInfo});
+        response.headers.forEach(console.log);
+        for(let entry in response.headers.entries()) {
+          console.log(entry);
+        }
+        response.headers.forEach(function(value, key){
+          console.log('[' + key + '] = '+value);
+      });
+        
         console.log("after updating user data");
         console.log(user);
+
+        const profile : UserProfile = {name: username, email: username, jwt: response.headers.get("Authorization") ?? ''};
+        localStorage.setItem("Authorization", response.headers.get("Authorization") ?? '');
+        setUser?.({...profile});
       }
       );
   }

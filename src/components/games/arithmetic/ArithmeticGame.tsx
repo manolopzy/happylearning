@@ -9,6 +9,7 @@ import axios, { AxiosResponse } from "axios";
 import { ARITHEMETIC_ATTEMPT, ARITHEMETIC_ATTEMPTS, ARITHEMETIC_RANDOM_OPERATION, BASIC_AUTH, SERVER_URL, STATISTICS } from "../../../Constants";
 import { UserArithmeticStatistics, UserAttempt } from "../../../types/user.type";
 import UsernamePasswordSignin from "../../signin/UsernamePasswordSignin";
+import { jwtHeader } from "../../../helpers/auth-header";
 
 
 
@@ -53,6 +54,9 @@ function MainBoard(user: UserProfile) {
   const loadAttempts = () => {
     const requestUrl = SERVER_URL + ARITHEMETIC_ATTEMPTS + user.name;
     console.log("url = " + requestUrl);
+    const jwt = localStorage.getItem("Authorization");
+    const header = jwt?{ Authorization: 'Bearer ' + jwt}:{ Authorization: '' };
+    
     /**
      * the embedded netty or tomcat server will 
      * replace + sign in url with space, its 
@@ -63,7 +67,7 @@ function MainBoard(user: UserProfile) {
     const encodedUrl = requestUrl.replace('+', '%2B');//encodeURIComponent(requestUrl);
     axios
       .get(encodedUrl, {
-        headers: { Authorization: + BASIC_AUTH },
+        headers: header,
       })
       .then((response: AxiosResponse) => {
         console.log(response.data);
